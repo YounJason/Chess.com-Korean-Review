@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Chess.com 한국어 리뷰 설정</title>
+  <style>
+    :root {
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-color: #202124;
+      --text-muted: #5f6368;
+      --primary-color: #1a73e8;
+      --primary-hover: #1557b0;
+      --border-color: #dadce0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+      padding: 24px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+    }
+
+    header {
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    header h1 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid #f1f3f4;
+    }
+
+    .row:last-child {
+      border-bottom: none;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-right: 16px;
+    }
+
+    .title {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #b0b3b8;
+      transition: .2s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: var(--primary-color);
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(20px);
+    }
+
+    select {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      font-size: 14px;
+      background-color: #fff;
+      outline: none;
+      min-width: 160px;
+    }
+
+    select:focus {
+      border-color: var(--primary-color);
+    }
+
+    a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    .btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: #fff;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f3f4;
+    }
+
+    .btn-danger {
+      background-color: #ea4335;
+      color: white;
+      border: none;
+    }
+
+    .btn-danger:hover {
+      background-color: #d93025;
+    }
+
+    .list-box {
+      max-height: 150px;
+      overflow-y: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background: #fcfcfc;
+      margin-top: 10px;
+      padding: 8px;
+    }
+
+    .list-item {
+      font-size: 12px;
+      font-family: monospace;
+      padding: 4px 6px;
+      border-bottom: 1px solid #f1f3f4;
+      color: #3c4043;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .empty-msg {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .sub-section {
+      max-height: 1000px;
+      transition: max-height 0.3s ease-in-out, opacity 0.2s ease-in-out;
+      opacity: 1;
+    }
+
+    .hidden {
+      max-height: 0 !important;
+      opacity: 0 !important;
+      overflow: hidden;
+      pointer-events: none;
+      border: none !important;
+      margin: 0 !important;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background-color: #ffffff;
+      padding: 32px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      width: 500px;
+      max-width: 90%;
+      box-sizing: border-box;
+    }
+
+    .image-container {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-bottom: 20px;
+      overflow: hidden;
+      border-radius: 12px;
+      background-color: #f8fafc;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #modalDescription {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #475569;
+      margin-bottom: 28px;
+      min-height: 5em;
+      word-break: keep-all;
+    }
+
+    .modal-controls {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .modal-controls button {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      background-color: #4f46e5;
+      color: white;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .modal-controls button:hover:not(:disabled) {
+      background-color: #4338ca;
+      transform: translateY(-1px);
+    }
+
+    .modal-controls button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .modal-controls button:disabled {
+      background-color: #e2e8f0;
+      color: #94a3b8;
+      cursor: not-allowed;
+    }
+
+    #nextBtn.close-mode {
+      background-color: #10b981;
+    }
+
+    #nextBtn.close-mode:hover {
+      background-color: #059669;
+    }
+
+    .footer {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-top: 1px solid var(--border-color);
+      padding: 8px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      backdrop-filter: blur(6px);
+    }
+
+    .footer .container {
+      max-width: 680px;
+      display: inline-block;
+      justify-content: space-between;
+      text-align: center;
+      gap: 12px;
+      padding: 0 48px;
+    }
+
+    .footer a.footer-link svg {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      vertical-align: middle;
+      fill: currentColor;
+    }
+
+    @media (max-width: 520px) {
+      .footer .container {
+        flex-direction: column;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Chess.com 한국어 리뷰 설정</h1>
+    </header>
+
+    <div class="card">
+      <div class="row">
+        <div class="info">
+          <div class="title">확장 프로그램 활성화</div>
+          <div class="desc">체스닷컴 한국어 리뷰 기능을 켜거나 끕니다.</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="ext-active" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div id="main-settings" class="sub-section">
+
+      <div class="card">
+        <div class="row">
+          <div class="info">
+            <div class="title">번역 표시 모드</div>
+            <div class="desc">화면에 번역을 어떤 방식으로 노출할지 선택합니다.</div>
+          </div>
+          <select id="display-mode">
+            <option value="ko-only">한국어만 표시</option>
+            <option value="both">원문도 함께 표시</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="info">
+            <div class="title">폰트 설정</div>
+            <div class="desc">번역된 텍스트에 적용할 폰트를 선택합니다.</div>
+          </div>
+          <select id="font-family">
+            <option value="system">시스템 기본 폰트</option>
+            <option value="Nanum+Gothic">나눔고딕</option>
+            <option value="Noto+Sans+KR">Noto Sans KR</option>
+            <option value="Noto+Serif+KR">Noto Serif Korean</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="info">
+            <div class="title">타이핑 효과 활성화</div>
+            <div class="desc">코치 리뷰 텍스트가 한 글자씩 타이핑되듯 나타나게 합니다.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="typing-effect" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="info">
+            <div class="title">미번역 텍스트 실시간 구글 번역</div>
+            <div class="desc"><a href="/dict.js">사전</a>에 없는 문장이 나올 경우 구글 번역기를 통해 실시간 번역합니다.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="google-translate">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="row">
+          <div class="info">
+            <div class="title">번역되지 않은 텍스트 기록하기</div>
+            <div class="desc">번역되지 않은 원문을 수집하여 로컬에 저장합니다.</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="record-untranslated" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="record-sub-settings" class="sub-section"
+          style="padding: 0 20px 16px 20px; border-top: 1px solid #f1f3f4; background: #fafafa;">
+          <div style="margin-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 14px; font-weight: 500;">기록된 미번역 텍스트</span>
+            <div style="display: flex; gap: 8px;">
+              <button class="btn btn-danger" id="btn-clear">모두 삭제</button>
+              <button class="btn btn-secondary" id="btn-github">GitHub Issues로 제보하기</button>
+            </div>
+          </div>
+          <div class="list-box" id="untranslated-list-container"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="info">
+            <div class="title">커스텀 사전 적용</div>
+            <div class="desc" id="dict-desc">사용자가 직접 정의한 단어장 파일(.json)을 가져와 반영합니다.</div>
+          </div>
+          <div>
+            <button class="btn" id="btn-import">가져오기</button>
+            <input type="file" id="file-input" accept=".json" style="display: none;">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      면책 조항: 'Chess.com', '체스닷컴'은 Chess.com, LLC의 상표입니다. 본 확장 프로그램은 Chess.com, LLC와 제휴, 후원, 공식 승인 또는 어떤 형태로든 공식적으로 연관되어
+      있지 않습니다.<br><br>
+      <a id="github-link" class="footer-link" href="https://github.com/YounJason/Chess.com-Korean-Review"
+        target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.54 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+        </svg>
+        GitHub
+      </a>
+      <a id="github-link" class="footer-link" href="https://yjsn.me/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path
+            d="M243.286 35.18c-6.518.806-9.717 1.417-15.869 2.93-11.133 2.76-17.065 5.176-26.001 10.596-5.957 3.589-12.036 8.545-19.482 15.845-7.886 7.715-13.55 15.918-19.605 28.345-5.615 11.596-7.837 19.58-9.473 34.18-1.513 13.378-1.196 22.655 1.197 34.74 3.662 18.628 7.25 28.663 15.869 44.239 6.006 10.888 9.888 16.357 16.235 22.924 6.519 6.739 9.888 9.815 14.234 12.916 1.22.878 2.246 1.684 2.246 1.757 0 .074-.489.391-1.123.684-3.052 1.49-12.305 7.544-16.431 10.742-5.81 4.541-13.135 12.476-20.068 21.777-2.198 2.955-4.468 6.055-5.152 7.08-.244.342-.781 1.1-1.196 1.71-6.299 8.862-12.5 19.482-18.848 32.275-11.035 22.217-14.624 32.129-21.045 57.934-4.59 18.53-5.957 25.269-11.767 57.74-2.246 12.695-2.344 14.062-1.099 16.626.88 1.83 2.295 3.271 4.248 4.297 1.172.634 1.514.683 3.858.683 2.124 0 2.758-.097 3.735-.537 1.66-.757 3.906-3.003 4.565-4.54.538-1.246.684-1.954 1.856-8.717.342-1.953.708-4.101.83-4.76.122-.684.488-2.808.83-4.761.586-3.272 1.22-6.86 2.222-12.33.22-1.22.488-2.758.61-3.417.977-5.567 3.565-18.31 4.517-22.217.195-.806.634-2.686.976-4.15 1.636-6.91 2.832-11.792 3.052-12.574l1.245-4.76c3.736-14.673 7.495-25.196 13.648-38.208 2.783-5.86 8.789-17.676 10.376-20.386 6.933-11.89 10.083-16.675 17.529-26.612 4.321-5.737 8.887-11.06 12.646-14.648 4.859-4.663 16.09-11.987 22.193-14.526 7.031-2.93 10.278-3.467 20.63-3.467 7.006-.025 7.47.024 10.498.635 4.028.83 9.204 2.368 11.718 3.515 2.466 1.099 10.572 5.225 11.841 6.03.537.342 1.026.61 1.099.61.195 0 2.588 1.466 6.665 4.078 3.906 2.54 10.303 7.91 14.575 12.305 8.862 9.106 17.847 20.044 24.097 29.272 7.226 10.67 10.62 16.773 21.509 38.574 8.886 17.75 12.963 27.1 20.85 47.486 2.758 7.202 6.518 18.066 7.543 21.85 1.685 6.226 3.589 14.746 4.468 20.02 1.318 7.837.83 17.798-1.22 25.83-1.075 4.15-1.075 5.542.024 7.983 2.588 5.835 9.936 7.276 14.477 2.857 1.88-1.831 2.661-3.687 3.687-8.716 1.513-7.495 1.855-10.767 1.855-17.871 0-8.106-.586-12.915-2.832-23.023-3.15-14.184-6.42-24.12-15.234-46.142-7.056-17.603-12.622-29.614-23.682-51.026-9.546-18.481-17.48-30.835-27.563-42.968-15.528-18.701-25.074-27.442-38.721-35.45-3.418-2.001-11.45-6.25-13.599-7.177-.903-.39-1.66-.855-1.66-1.026 0-.17.415-.488.928-.708 3.516-1.465 12.305-5.468 17.04-7.763 9.059-4.395 15.138-7.91 25.05-14.453 13.305-8.79 22.412-18.311 31.372-32.813 2.856-4.59 5.762-12.036 7.373-18.823 2.026-8.618 2.1-9.326 2.1-24-.025-15.21-.27-18.09-2.369-27.587-1-4.639-3.1-11.865-4.37-15.137-3.052-7.934-11.328-22.119-17.847-30.59-5.004-6.544-15.332-15.601-22.827-20.045-9.106-5.395-25.708-11.743-35.717-13.671-7.35-1.417-18.189-2.1-23.316-1.465m-64.941 77.174c1.782 6.396 4.321 13.061 6.225 16.308 1.221 2.075 3.711 4.785 5.396 5.86 3.662 2.368 8.74 2.27 12.597-.22 3.54-2.295 7.154-7.031 8.74-11.45l.318-.904.171.733c.39 1.709 1.611 5.298 2.417 7.055 2.417 5.274 6.543 8.814 11.108 9.473 6.055.879 10.987-2.93 13.208-10.254.293-.952.61-1.758.708-1.758s.489.806.855 1.758c.366.977 1.367 3.223 2.222 4.98 1.342 2.71 1.855 3.492 3.54 5.298 3.637 3.882 6.42 5.176 10.717 5.005 2.222-.073 2.564-.17 4.273-1.025 3.54-1.807 5.762-4.785 7.74-10.376.487-1.416.976-2.588 1.098-2.637s.415.61.659 1.465c1.562 5.298 4.419 9.009 8.35 10.84 1.342.61 1.709.683 4.15.683 3.198-.024 4.492-.439 7.178-2.343 3.271-2.27 5.053-5.469 7.91-14.014a238 238 0 0 1 1.758-5.2c.17-.195 5.786 10.693 8.422 16.308 1.294 2.76 3.028 4.664 5.25 5.762 1.342.635 1.684.708 4.028.708 2.27 0 2.71-.073 3.98-.659 2.245-1.05 4.199-3.223 5.834-6.42.733-1.49 1.88-3.932 2.515-5.42.635-1.514 1.22-2.808 1.343-2.882.61-.39.854 22.315.293 26.978-.415 3.223-1.05 6.274-2.246 10.498-1.734 6.055-3.443 9.521-7.715 15.65-5.762 8.202-10.205 12.914-17.066 18.139-6.811 5.176-18.115 12.06-26.855 16.382-6.08 3.003-20.435 9.472-26.71 12.012-2.904 1.196-17.602 6.176-18.188 6.176-.122 0-.78-.268-1.464-.61s-2.857-.952-4.786-1.367c-3.98-.83-9.155-2.49-12.085-3.858-2.832-1.318-6.518-4.223-11.084-8.691-7.592-7.422-10.693-11.45-15.869-20.508-4.98-8.691-9.106-17.676-11.206-24.316-1.587-4.98-4.101-16.211-5.2-23.17-.488-3.075-.562-4.467-.586-10.62 0-7.446.195-9.96 1.49-18.896.78-5.37 2.514-12.085 4.028-15.576l.512-1.172.586 1.587c.318.879.977 2.979 1.44 4.688"
+            transform="translate(-0.9202940611330082, -1.261248751228806) scale(0.0360948660607483) " />
+          <path
+            d="M214.307 154.419c-2.344.635-4.688 2.539-5.786 4.712-.806 1.587-1.148 3.93-.782 5.59.66 2.98 2.344 5.225 4.956 6.592 1.197.635 1.514.684 3.98.684 2.368 0 2.807-.073 3.784-.586 2.637-1.391 4.346-3.491 5.03-6.177 1.684-6.543-4.615-12.622-11.182-10.815m33.276 3.442c-1.465.513-2.661 1.319-3.71 2.442-1.173 1.27-1.563 1.977-2.027 3.515-1.783 6.03 3.027 12.11 9.253 11.646 3.222-.244 6.274-2.344 7.641-5.225.586-1.245.66-1.709.66-3.857 0-2.197-.074-2.588-.709-3.882-.903-1.855-2.343-3.296-4.174-4.175-1.197-.61-1.807-.732-3.638-.781-1.587-.049-2.54.024-3.296.317"
+            transform="translate(-0.9202940611330082, -1.261248751228806) scale(0.0360948660607483) " />
+        </svg>
+        Youn Jason
+      </a><br>© 2026 윤재선. All rights reserved.
+    </div>
+  </footer>
+
+  <div id="welcomeModal" class="modal">
+    <div class="modal-content">
+      <div class="image-container">
+        <img id="modalImage" src="" alt="대표 이미지">
+      </div>
+
+      <p id="modalDescription"></p>
+
+      <div class="modal-controls">
+        <button id="nextBtn" type="button">다음</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+
+</html>

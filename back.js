@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener((details) => {
   if (details.reason === "install") {
-    chrome.runtime.openOptionsPage();
+    chrome.tabs.create({url: "/settings.html#welcome"});
   }
 });
