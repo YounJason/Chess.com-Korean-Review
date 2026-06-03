@@ -1,1 +1,1 @@
-# Chess.com-Korean-Review
+# Chess.com Korean Review
