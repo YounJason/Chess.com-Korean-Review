@@ -115,7 +115,7 @@
         if (match) {
             const origVisible = parseInt(match[1], 10);
             const cloneVisible = el._origLen ? Math.round((origVisible / el._origLen) * el._transLen) : 0;
-            el._clone.style.setProperty('--tw-visible', cloneVisible);
+            try{el._clone.style.setProperty('--tw-visible', cloneVisible);}catch(e){}
         }
     }
 

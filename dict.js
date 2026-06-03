@@ -1,4 +1,3 @@
-//for test, have to edit
 window.Dict  = {
     "Welcome back! Let's get solving...": "어서 오세요! 다시 퍼즐을 풀어볼까요...",
     "Doing Puzzles every day makes it easier to see your opponents mistakes.": "매일 퍼즐을 풀면 상대방의 실수를 더 쉽게 포착할 수 있습니다.",

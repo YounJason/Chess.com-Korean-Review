@@ -172,14 +172,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const issueTitle = encodeURIComponent('[미번역 제보] 체스닷컴 리뷰 번역 요청');
-      let markdownBody = `## 📄 제보된 미번역 텍스트 리스트\n\n`;
+      const issueTitle = encodeURIComponent('Untranslated text');
+      let issueBody = ``;
       list.forEach(txt => {
-        markdownBody += `- \`${txt}\` \n`;
+        issueBody += `"${txt}",\n`;
       });
-      markdownBody += `\n---\n*확장 프로그램 설정 페이지에서 자동으로 생성된 제보입니다.*`;
 
-      const issueBody = encodeURIComponent(markdownBody);
+      const issueBody = encodeURIComponent(issueBody);
       const githubUrl = `https://github.com/YounJason/Chess.com-Korean-Review/issues/new?title=${issueTitle}&body=${issueBody}`;
       window.open(githubUrl, '_blank');
     });
