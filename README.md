@@ -1,8 +1,9 @@
 # Chess.com 한국어 리뷰
 ![썸네일](./images/thumbnail.png)
-> 체스닷컴(Chess.com)의 게임 리뷰와 퍼즐에 등장하는 코치의 영어 피드백을 한국어로 번역해 주는 브라우저 확장 프로그램입니다.
->
-> [Chrome 웹 스토어](https://chromewebstore.google.com/detail/kjoolomffhlfilplgelfghmehpmfghaf)
+
+체스닷컴(Chess.com)의 게임 리뷰와 퍼즐에 등장하는 코치의 영어 피드백을 한국어로 번역해 주는 브라우저 확장 프로그램입니다.
+
+[Chrome 웹 스토어](https://chromewebstore.google.com/detail/kjoolomffhlfilplgelfghmehpmfghaf)
 
 <br>
 
@@ -30,4 +31,4 @@
 
 <br>
 
-> 면책 조항: 'Chess.com', '체스닷컴'은 Chess.com, LLC의 상표입니다. 본 확장 프로그램은 Chess.com, LLC와 제휴, 후원, 공식 승인 또는 어떤 형태로든 공식적으로 관련되어 있지 않습니다. 본 확장 프로그램을 사용하여 발생하는 모든 결과에 대한 책임은 사용자에게 있습니다.
+> ###### 면책 조항: 'Chess.com', '체스닷컴'은 Chess.com, LLC의 상표입니다. 본 확장 프로그램은 Chess.com, LLC와 제휴, 후원, 공식 승인 또는 어떤 형태로든 공식적으로 관련되어 있지 않습니다. 본 확장 프로그램을 사용하여 발생하는 모든 결과에 대한 책임은 사용자에게 있습니다.
