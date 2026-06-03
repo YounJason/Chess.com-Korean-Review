@@ -173,9 +173,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const issueTitle = encodeURIComponent('Untranslated text');
-      let issueBody = ``;
+      let issueContent = ``;
       list.forEach(txt => {
-        issueBody += `"${txt}",\n`;
+        issueContent += `"${txt}",\n`;
       });
 
       const issueBody = encodeURIComponent(issueBody);
