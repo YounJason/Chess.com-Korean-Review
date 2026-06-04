@@ -178,6 +178,7 @@
 
         const origText = parseSpeechElement(el);
         if (!origText) return;
+        if (/[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(origText)) return;
 
         if (!el._clone || el._clone.dataset.origText !== origText) {
             if (el._clone) {
