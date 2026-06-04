@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Chess.com 한국어 리뷰",
-  "version": "1.0",
+  "version": "1.0.1",
   "description":"체스닷컴(Chess.com)의 게임 리뷰와 퍼즐에 등장하는 코치의 영어 피드백을 한국어로 번역해 주는 브라우저 확장 프로그램입니다.",
   "icons": {
     "16": "icons/icon-16.png",
