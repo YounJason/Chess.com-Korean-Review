@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         issueContent += `"${txt}",\n`;
       });
 
-      const issueBody = encodeURIComponent(issueBody);
+      const issueBody = encodeURIComponent(issueContent);
       const githubUrl = `https://github.com/YounJason/Chess.com-Korean-Review/issues/new?title=${issueTitle}&body=${issueBody}`;
       window.open(githubUrl, '_blank');
     });
