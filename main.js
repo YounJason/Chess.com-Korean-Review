@@ -115,7 +115,7 @@
         if (match) {
             const origVisible = parseInt(match[1], 10);
             const cloneVisible = el._origLen ? Math.round((origVisible / el._origLen) * el._transLen) : 0;
-            try{el._clone.style.setProperty('--tw-visible', cloneVisible);}catch(e){}
+            try { el._clone.style.setProperty('--tw-visible', cloneVisible); } catch (e) { }
         }
     }
 
@@ -137,13 +137,18 @@
         el.after(clone);
 
         if (settings.displayMode === 'both') {
-            el.style.display = '';
-            clone.style.display = 'block';
+            el.style.setProperty('display', 'block', 'important');
+            el.style.setProperty('width', '100%', 'important');
+            if (el.parentNode) el.parentNode.style.flexWrap = 'wrap';
+
+            clone.style.setProperty('display', 'block', 'important');
+            clone.style.setProperty('width', '100%', 'important');
             clone.style.marginTop = '6px';
             clone.style.borderTop = '1px dashed #dadce0';
             clone.style.paddingTop = '4px';
         } else {
             el.style.display = 'none';
+            el.style.removeProperty('width');
             clone.style.display = '';
         }
 
@@ -279,7 +284,10 @@
             if (changes.extActive) {
                 if (!settings.extActive) {
                     document.querySelectorAll('[trans="true"]').forEach(clone => {
-                        if (clone._orig) clone._orig.style.display = '';
+                        if (clone._orig) {
+                            clone._orig.style.display = '';
+                            clone._orig.style.removeProperty('width');
+                        }
                         clone.remove();
                     });
                 } else {
